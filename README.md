@@ -19,7 +19,7 @@ const text = `Welcome to {{{placeHtml}}}!
   {{#names.length}}
   Greetings to:
   {{#names}}
-  - {{.}}
+  - {{.}} {{>icon}}
   {{/names}}
   {{/names.length}}`;
 const tree = hogan.parse(hogan.scan(text), text);
@@ -50,6 +50,9 @@ The code above outputs the following:
       "scalar": true,
       "escaped": true
     }
+  },
+  "icon": {
+    "partial": true
   }
 }
 ```
@@ -66,17 +69,17 @@ interpretation.
 
 Each variable maps to an object that may contain the following properties:
 
-- `scalar` (boolean): The variable was used in a scalar context: `{{v}}`, `{{{v}}}`, `{{&v}}`, `{{>v}}`
+- `name` (string): The name of the variable, if `includeName` is `true` in the options
+- `scalar` (boolean): The variable was used in a scalar context: `{{v}}`, `{{{v}}}`, `{{&v}}`
 - `escaped` (boolean): The variable was used in an escaped reference: `{{v}}`
 - `unescaped` (boolean): The variable was used in an unescaped reference: `{{{v}}}`, `{{&v}}`
 - `section` (boolean): The variable was used in a section: `{{#v}}`, `{{^v}}`
 - `noninverted` (boolean): The variable was used in a normal/non-inverted section: `{{#v}}`
 - `inverted` (boolean): The variable was used in an inverted section: `{{^v}}`
-- `partial` (boolean): The variable/filename was used in a partial: `{{>v}}`
+- `partial` (boolean): The variable/filename was used in a partial: `{{>v}}` (top-level context only)
 - `array` (boolean): The variable was used as an array in a section (containing `{{.}}`)
 - `members` (Object): An object mapping member variable references to usage context
 - `nested` (Object): An object mapping nested variable references to usage context
-- `name` (string): The name of the variable, if `includeName` is `true` in the options
 
 The difference between `members` and `nested` is that members are known to be members of the
 containing variable, generally because they were referenced using dot-notation. Nested references

@@ -1,6 +1,6 @@
 {
   "name": "hogan-var",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Analyze variable usages in Hogan.js templates",
   "main": "index.js",
   "files": [

@@ -19,7 +19,7 @@ const text = `Welcome to \{{{placeHtml}}}!
   \{{#names.length}}
   Greetings to:
   \{{#names}}
-  - \{{.}}
+  - \{{.}} \{{>icon}}
   \{{/names}}
   \{{/names.length}}`;
 const tree = hogan.parse(hogan.scan(text), text);
@@ -50,6 +50,9 @@ The code above outputs the following:
       "scalar": true,
       "escaped": true
     }
+  },
+  "icon": {
+    "partial": true
   }
 }
 ```

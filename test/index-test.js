@@ -9,7 +9,7 @@ describe('scanVariables', function() {
     {{#names.length}}
     Greetings to:
     {{#names}}
-    - {{.}}
+    - {{.}} {{>icon}}
     {{/names}}
     {{/names.length}}`;
     const tree = hogan.parse(hogan.scan(text), text);
@@ -34,6 +34,9 @@ describe('scanVariables', function() {
         },
         section: true,
         noninverted: true
+      },
+      icon: {
+        partial: true
       }
     });
   });
