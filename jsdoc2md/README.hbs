@@ -1,0 +1,63 @@
+# hogan-var
+
+Analyzes variable usages in [Hogan.js](http://twitter.github.io/hogan.js/) templates.
+Useful for static analysis, documentation generation, and sample rendering of arbitrary templates.
+
+## Installation
+
+```sh
+npm install hogan-var
+```
+
+## Usage
+
+```js
+const hogan = require('hogan.js');
+const scanVariables = require('hogan-var').default;
+
+const text = `Welcome to \{{{placeHtml}}}!
+  \{{#names.length}}
+  Greetings to:
+  \{{#names}}
+  - \{{.}}
+  \{{/names}}
+  \{{/names.length}}`;
+const tree = hogan.parse(hogan.scan(text), text);
+const vars = scanVariables(tree);
+console.log(JSON.stringify(vars));
+```
+
+The code above outputs the following:
+
+```json
+{
+  "placeHtml": {
+    "scalar": true,
+    "unescaped": true
+  },
+  "names": {
+    "array": true,
+    "members": {
+      "length": {
+        "scalar": true,
+        "section": true,
+        "noninverted": true
+      }
+    },
+    "section": true,
+    "noninverted": true,
+    "elements": {
+      "scalar": true,
+      "escaped": true
+    }
+  }
+}
+```
+
+## API Reference
+
+{{>main}}
+
+## License
+
+`hogan-var` is available under the [ISC license](LICENSE).

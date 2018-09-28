@@ -1,0 +1,40 @@
+{
+  "name": "hogan-var",
+  "version": "1.0.0",
+  "description": "Analyze variable usages in Hogan.js templates",
+  "main": "index.js",
+  "files": [
+    "README.md"
+  ],
+  "scripts": {
+    "docs": "jsdoc2md --heading-depth 3 -t jsdoc2md/README.hbs index.js > README.md",
+    "prepublishOnly": "npm run docs",
+    "prepush": "npm test",
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trevorr/hogan-var.git"
+  },
+  "keywords": [
+    "hogan",
+    "mustache",
+    "template"
+  ],
+  "author": "Trevor Robinson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trevorr/hogan-var/issues"
+  },
+  "homepage": "https://github.com/trevorr/hogan-var#readme",
+  "dependencies": {
+    "assign-deep": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "hogan.js": "^3.0.2",
+    "husky": "^1.0.1",
+    "jsdoc-to-markdown": "^4.0.1",
+    "mocha": "^5.2.0"
+  }
+}
